@@ -4,7 +4,7 @@ $(function () {
     qs = qs.split("+").join(" ");
 
     var params = {}, tokens,
-        re = /[?&]?(u(?=tm)[^=]+)=([^&]*)/g;
+        re = /\butm_(\w+)=(\w+)/g;
 
     while (tokens = re.exec(qs)) {
         params[decodeURIComponent(tokens[1])]
@@ -17,7 +17,7 @@ $(function () {
   // Populate the object to be sent to Amplitude
   var utmParams = ampGetQueryParams(document.location.search), propertiesToReport = {};
   for (var param in utmParams) {
-    propertiesToReport[param] = utmParams[param];
+    propertiesToReport["utm_" + param] = utmParams[param];
   }
 
   if(Object.getOwnPropertyNames(propertiesToReport).length !== 0){
