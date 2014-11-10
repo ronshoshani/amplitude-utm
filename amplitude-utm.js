@@ -4,7 +4,7 @@ $(function () {
     qs = qs.split("+").join(" ");
 
     var params = {}, tokens,
-        re = /\butm_(\w+)=(\w+)/g;
+        re = /\butm_([^=]+)=([^&]+)/g;
 
     while (tokens = re.exec(qs)) {
         params[decodeURIComponent(tokens[1])]
